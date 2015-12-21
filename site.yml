@@ -1,0 +1,12 @@
+---
+- name: Install Master Server (Standalone)
+  hosts: master_servers
+  remote_user: vagrant
+  user: root
+  sudo: true
+  vars:
+    myip: localhost
+
+  roles:
+    - common
+    - imply-master-standalone

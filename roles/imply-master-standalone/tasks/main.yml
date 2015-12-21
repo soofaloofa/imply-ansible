@@ -1,0 +1,61 @@
+---
+- name: Create Group
+  group: name={{imply_group}} state=present
+
+- name: Create User
+  user: name={{imply_user}} group={{imply_group}} state=present
+
+- name: Create Install Directory
+  file: path={{imply_install_dir}} owner={{imply_user}} group={{imply_group}} mode=0755 state=directory
+
+- name: Download
+  get_url: url=http://static.imply.io/release/imply-{{imply_version}}.tar.gz dest=/tmp/imply-{{imply_version}}.tar.gz
+
+- name: Extract
+  unarchive: src=/tmp/imply-{{imply_version}}.tar.gz dest=/opt/ copy=no
+
+- name: Remove Existing install
+  command: rm -rf "{{imply_install_dir}}"
+
+- name: Move Install Directory
+  command: mv -f /opt/imply-{{imply_version}} "{{imply_install_dir}}"
+
+- name: Set common.runtime.properties
+  template: >
+    src=common.runtime.properties.j2
+    dest={{ imply_install_dir }}/conf/druid/_common/common.runtime.properties
+    owner={{ imply_user }}
+    group={{ imply_group }}
+
+- name: Set overlord.jvm.config
+  template: >
+    src=overlord.jvm.config.j2
+    dest={{ imply_install_dir }}/conf/druid/overlord/jvm.config
+    owner={{ imply_user }}
+    group={{ imply_group }}
+
+- name: Set coordinator.jvm.config
+  template: >
+    src=coordinator.jvm.config.j2
+    dest={{ imply_install_dir }}/conf/druid/coordinator/jvm.config
+    owner={{ imply_user }}
+    group={{ imply_group }}
+
+- name: Update Permissions
+  file: >
+    path={{ imply_install_dir }}
+    owner={{ imply_user }}
+    group={{ imply_group }}
+    recurse=yes
+    mode=0755
+    state=directory
+
+- name: Add supervisor config
+  template: >
+    src=imply.conf.j2
+    dest=/etc/supervisor/conf.d/imply.conf
+    owner={{ imply_user }}
+    group={{ imply_group }}
+
+- name: Restart supervisor
+  shell: supervisorctl reread && supervisorctl update

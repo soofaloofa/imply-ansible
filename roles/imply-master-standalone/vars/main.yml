@@ -1,0 +1,17 @@
+---
+imply_group: imply
+imply_user: imply
+imply_version: 1.0.2
+imply_install_dir: /opt/imply/
+
+druid_s3_bucket: druid_data
+druid_s3_access_key: none
+druid_s3_secret_key: none
+
+overlord_min_heap_size: 256m
+overlord_max_heap_size: 256m
+
+coordinator_min_heap_size: 256m
+coordinator_max_heap_size: 256m
+
+myip: localhost

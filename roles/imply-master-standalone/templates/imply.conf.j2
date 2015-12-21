@@ -1,0 +1,11 @@
+[program:imply]
+command={{imply_install_dir}}/bin/supervise -c {{imply_install_dir}}/conf/supervise/master-with-zk.conf
+user={{imply_user}}
+autostart=true
+autorestart=true
+startsecs=10
+startretries=999
+log_stdout=true
+log_stderr=true
+logfile_maxbytes=10MB
+logfile_backups=10
