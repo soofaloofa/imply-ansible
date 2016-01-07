@@ -1,0 +1,30 @@
+---
+- name: Provisiong Master Node
+  hosts: all
+  vars_files:
+    - vars.yml
+
+  pre_tasks:
+    - name: Install Required Packages
+      sudo: true
+      apt:
+        update_cache: true
+        pkg: "{{ item }}"
+        state: present
+      with_items:
+        - wget
+        - supervisor
+        - openjdk-7-jdk
+
+  roles:
+    - imply
+    - { role: imply-master, when: node_type == 'master' }
+
+  post_tasks:
+    - name: Reread supervisor
+      sudo: true
+      command: supervisorctl reread
+
+    - name: Update supervisor
+      sudo: true
+      command: supervisorctl update

@@ -1,0 +1,8 @@
+---
+- name: Add supervisor config
+  sudo: true
+  template:
+    src: supervisor.imply-master.conf.j2
+    dest: /etc/supervisor/conf.d/imply-master.conf
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"

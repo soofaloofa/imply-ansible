@@ -1,0 +1,93 @@
+---
+- name: Create Group
+  sudo: true
+  group:
+    name: "{{imply.group}}"
+    state: present
+
+- name: Create User
+  sudo: true
+  user: 
+    name: "{{imply.user}}"
+    group: "{{imply.group}}"
+    state: present
+
+- name: Create Install Directory
+  sudo: true
+  file: 
+    path: "{{imply.dir}}"
+    owner: "{{imply.user}}"
+    group: "{{imply.group}}"
+    mode: 0755
+    state: directory
+
+- name: Download
+  sudo: true
+  get_url:
+    url: "http://static.imply.io/release/imply-{{imply.version}}.tar.gz"
+    dest: "/tmp/imply-{{imply.version}}.tar.gz"
+
+- name: Extract
+  sudo: true
+  unarchive:
+    src: "/tmp/imply-{{imply.version}}.tar.gz"
+    dest: /opt/
+    copy: no
+
+- name: Remove Existing install
+  sudo: true
+  command: rm -rf "{{imply.dir}}"
+
+- name: Move Install Directory
+  sudo: true
+  command: mv -f "/opt/imply-{{imply.version}}" "{{imply.dir}}"
+
+- name: Set common.runtime.properties
+  sudo: true
+  template: 
+    src: common.runtime.properties.j2
+    dest: "{{ imply.dir }}/conf/druid/_common/common.runtime.properties"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
+- name: Set historical.jvm.config
+  sudo: true
+  template:
+    src: historical.jvm.config.j2
+    dest: "{{ imply.dir }}/conf/druid/historical/jvm.config"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
+- name: Set middleManager.jvm.config
+  sudo: true
+  template:
+    src: middleManager.jvm.config.j2
+    dest: "{{ imply.dir }}/conf/druid/middleManager/jvm.config"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
+- name: Set overlord.jvm.config
+  sudo: true
+  template:
+    src: overlord.jvm.config.j2
+    dest: "{{ imply.dir }}/conf/druid/overlord/jvm.config"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
+- name: Set coordinator.jvm.config
+  sudo: true
+  template:
+    src: coordinator.jvm.config.j2
+    dest: "{{ imply.dir }}/conf/druid/coordinator/jvm.config"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
+- name: Update Permissions
+  sudo: true
+  file:
+    path: "{{ imply.dir }}"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+    recurse: yes
+    mode: 0755
+    state: directory

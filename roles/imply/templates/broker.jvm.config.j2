@@ -1,0 +1,8 @@
+-server
+-Xms{{druid.broker.min_heap_size}}
+-Xmx{{druid.broker.max_heap_size}}
+-XX:MaxDirectMemorySize={{druid.broker.max_direct_memory_size}}
+-Duser.timezone=UTC
+-Dfile.encoding=UTF-8
+-Djava.io.tmpdir=var/tmp
+-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager

@@ -1,8 +1,7 @@
 -server
--Xms{{coordinator_min_heap_size}}
--Xmx{{coordinator_max_heap_size}}
+-Xms{{druid.middleManager.min_heap_size}}
+-Xmx{{druid.middleManager.max_heap_size}}
 -Duser.timezone=UTC
 -Dfile.encoding=UTF-8
 -Djava.io.tmpdir=var/tmp
 -Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager
--Dderby.stream.error.file=var/druid/derby.log

@@ -1,0 +1,54 @@
+#
+# Extensions
+#
+
+druid.extensions.coordinates=["io.druid.extensions:druid-s3-extensions", "io.druid.extensions:mysql-metadata-storage"]
+druid.extensions.localRepository=dist/druid/extensions-repo
+druid.extensions.remoteRepositories=[]
+
+#
+# Zookeeper
+#
+
+druid.zk.service.host={{ zookeeper.ips }}
+druid.zk.paths.base=/druid
+
+#
+# Metadata storage
+#
+druid.metadata.storage.type=mysql
+druid.metadata.storage.connector.connectURI=jdbc:mysql://{{ mysql.ip }}:3306/{{ mysql.dbname }}?characterEncoding=UTF-8
+druid.metadata.storage.connector.user={{ mysql.user }}
+druid.metadata.storage.connector.password={{ mysql.password }}
+
+#
+# Deep storage
+#
+
+druid.storage.type=s3
+druid.storage.bucket={{druid.s3_bucket}}
+druid.storage.baseKey=druid/segments
+druid.s3.accessKey={{druid.s3_access_key}}
+druid.s3.secretKey={{druid.s3_secret_key}}
+
+#
+# Indexing service logs
+#
+#
+druid.indexer.logs.type=s3
+druid.indexer.logs.s3Bucket={{druid.s3_bucket}}
+druid.indexer.logs.s3Prefix=druid/indexing-logs
+
+#
+# Service discovery
+#
+
+druid.selectors.indexing.serviceName=overlord
+
+#
+# Monitoring
+#
+
+druid.monitoring.monitors=["com.metamx.metrics.JvmMonitor"]
+druid.emitter=logging
+druid.emitter.logging.logLevel=debug
