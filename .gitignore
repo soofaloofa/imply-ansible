@@ -1,4 +1,4 @@
 .vagrant
-vars.yml
+vars.sh
 imply-1.0.2/
 imply-1.0.2.tar.gz

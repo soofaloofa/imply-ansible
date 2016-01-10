@@ -1,5 +1,5 @@
 ---
-- name: Provisiong Master Node
+- name: Provision Node
   hosts: all
   vars_files:
     - vars.yml

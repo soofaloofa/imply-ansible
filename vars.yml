@@ -1,0 +1,43 @@
+---
+imply:
+  version: 1.0.2
+  user: imply
+  group: imply
+
+  dir: /opt/imply
+
+druid:
+  s3_bucket: "{{ s3_bucket }}"
+  s3_access_key: "{{ s3_access_key }}"
+  s3_secret_key: "{{ s3_secret_key }}"
+
+  historical:
+    min_heap_size: 256m
+    max_heap_size: 256m
+    max_direct_memory_size: 256m
+
+  middleManager:
+    min_heap_size: 64m
+    max_heap_size: 64m
+
+  overlord:
+    min_heap_size: 256m
+    max_heap_size: 256m
+
+  coordinator:
+    min_heap_size: 256m
+    max_heap_size: 256m
+
+  broker:
+    min_heap_size: 25g
+    max_heap_size: 25g
+    max_direct_memory_size: 256m
+
+zookeeper:
+  ips: "{{zookeeper_ips}}"
+
+mysql:
+  ip: "{{ mysql_ip }}"
+  dbname: "{{ mysql_dbname }}"
+  user: "{{ mysql_user }}"
+  password: "{{ mysql_password }}"
