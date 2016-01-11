@@ -7,9 +7,10 @@ imply:
   dir: /opt/imply
 
 druid:
-  s3_bucket: "{{ s3_bucket }}"
-  s3_access_key: "{{ s3_access_key }}"
-  s3_secret_key: "{{ s3_secret_key }}"
+  s3:
+    bucket: "{{ s3_bucket }}"
+    access_key: "{{ s3_access_key }}"
+    secret_key: "{{ s3_secret_key }}"
 
   cache:
     size_in_bytes: 10000000
