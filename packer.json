@@ -3,6 +3,7 @@
     "aws_access_key": "",
     "aws_secret_key": "",
     "node_type": "",
+    "hosts": "",
     "aws_source_ami": "",
     "aws_subnet_id": "",
     "aws_security_group_id": "",
@@ -42,7 +43,7 @@
     {
       "type": "ansible-local",
       "playbook_file": "provision.yml",
-      "extra_arguments": ["--extra-vars", "'node_type={{user `node_type`}} s3_bucket={{user `s3_bucket`}} s3_access_key={{user `s3_access_key`}} s3_secret_key={{user `s3_secret_key`}} zookeeper_ips={{user `zookeeper_ips`}} mysql_dbname={{user `mysql_dbname`}} mysql_ip={{user `mysql_ip`}} mysql_user={{user `mysql_user`}} mysql_password={{user `mysql_password`}}'"],
+      "extra_arguments": ["--extra-vars", "'node_type={{user `node_type`}} hosts={{user `hosts`}} s3_bucket={{user `s3_bucket`}} s3_access_key={{user `s3_access_key`}} s3_secret_key={{user `s3_secret_key`}} zookeeper_ips={{user `zookeeper_ips`}} mysql_dbname={{user `mysql_dbname`}} mysql_ip={{user `mysql_ip`}} mysql_user={{user `mysql_user`}} mysql_password={{user `mysql_password`}}'"],
       "playbook_dir": "."
     }
   ]
