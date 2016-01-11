@@ -82,6 +82,14 @@
     owner: "{{ imply.user }}"
     group: "{{ imply.group }}"
 
+- name: Set broker.jvm.config
+  sudo: true
+  template:
+    src: broker.jvm.config.j2
+    dest: "{{ imply.dir }}/conf/druid/broker/jvm.config"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
 - name: Update Permissions
   sudo: true
   file:

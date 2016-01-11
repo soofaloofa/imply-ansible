@@ -11,6 +11,9 @@ druid:
   s3_access_key: "{{ s3_access_key }}"
   s3_secret_key: "{{ s3_secret_key }}"
 
+  cache:
+    size_in_bytes: 10000000
+
   server:
     http:
       num_threads: 8
@@ -38,9 +41,11 @@ druid:
     max_heap_size: 256m
 
   broker:
-    min_heap_size: 25g
-    max_heap_size: 25g
-    max_direct_memory_size: 256m
+    http:
+      num_connections: 5
+    min_heap_size: 1g
+    max_heap_size: 1g
+    max_direct_memory_size: 1280m
 
 zookeeper:
   ips: "{{zookeeper_ips}}"

@@ -5,6 +5,10 @@
     - vars.yml
 
   pre_tasks:
+    - name: Add node.js PPA
+      sudo: true
+      shell: curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+
     - name: Install Required Packages
       sudo: true
       apt:
@@ -13,6 +17,7 @@
         state: present
       with_items:
         - wget
+        - nodejs
         - supervisor
         - openjdk-7-jdk
 
