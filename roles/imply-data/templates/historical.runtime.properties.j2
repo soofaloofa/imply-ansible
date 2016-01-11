@@ -1,0 +1,13 @@
+druid.service=historical
+druid.port=8083
+
+# HTTP server threads
+druid.server.http.numThreads={{druid.server.http.num_threads}}
+
+# Processing threads and buffers
+druid.processing.buffer.sizeBytes={{druid.processing.buffer.size_bytes}}
+druid.processing.numThreads={{druid.processing.num_threads}}
+
+# Segment storage
+druid.segmentCache.locations=[{"path":"var/druid/segment-cache","maxSize"\:300000000000}]
+druid.server.maxSize=300000000000

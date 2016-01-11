@@ -24,12 +24,12 @@ druid.metadata.storage.connector.password={{ mysql.password }}
 #
 # Deep storage
 #
+druid.s3.accessKey={{druid.s3_access_key}}
+druid.s3.secretKey={{druid.s3_secret_key}}
 
 druid.storage.type=s3
 druid.storage.bucket={{druid.s3_bucket}}
 druid.storage.baseKey=druid/segments
-druid.s3.accessKey={{druid.s3_access_key}}
-druid.s3.secretKey={{druid.s3_secret_key}}
 
 #
 # Indexing service logs

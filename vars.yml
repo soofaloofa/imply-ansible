@@ -11,10 +11,19 @@ druid:
   s3_access_key: "{{ s3_access_key }}"
   s3_secret_key: "{{ s3_secret_key }}"
 
+  server:
+    http:
+      num_threads: 8
+
+  processing:
+    num_threads: 2
+    buffer:
+      size_bytes: 256000000
+
   historical:
-    min_heap_size: 256m
-    max_heap_size: 256m
-    max_direct_memory_size: 256m
+    min_heap_size: 1g
+    max_heap_size: 1g
+    max_direct_memory_size: 1280m
 
   middleManager:
     min_heap_size: 64m

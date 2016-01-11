@@ -1,8 +1,16 @@
 ---
+- name: Set runtime.properties
+  sudo: true
+  template:
+    src: historical.runtime.properties.j2
+    dest: "{{ imply.dir }}/conf/druid/historical/runtime.properties"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
 - name: Add supervisor config
   sudo: true
   template:
-    src: supervisor.imply-master.conf.j2
-    dest: /etc/supervisor/conf.d/imply-master.conf
+    src: supervisor.imply-data.conf.j2
+    dest: /etc/supervisor/conf.d/imply-data.conf
     owner: "{{ imply.user }}"
     group: "{{ imply.group }}"

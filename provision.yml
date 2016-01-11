@@ -16,6 +16,10 @@
         - supervisor
         - openjdk-7-jdk
 
+    - name: Stop service
+      sudo: true
+      supervisorctl: name="imply-{{node_type}}" state=stopped 
+
   roles:
     - imply
     - { role: imply-master, when: node_type == 'master' }
@@ -30,3 +34,7 @@
     - name: Update supervisor
       sudo: true
       command: supervisorctl update
+
+    - name: Restart service
+      sudo: true
+      supervisorctl: name="imply-{{node_type}}" state=restarted 
