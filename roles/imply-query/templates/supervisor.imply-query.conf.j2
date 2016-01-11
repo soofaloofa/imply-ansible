@@ -1,0 +1,11 @@
+[program:imply-master]
+command={{imply.dir}}/bin/supervise -c {{imply.dir}}/conf/supervise/query.conf
+user={{imply.user}}
+autostart=true
+autorestart=true
+startsecs=10
+startretries=999
+log_stdout=true
+log_stderr=true
+logfile_maxbytes=10MB
+logfile_backups=10

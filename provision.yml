@@ -19,6 +19,8 @@
   roles:
     - imply
     - { role: imply-master, when: node_type == 'master' }
+    - { role: imply-data, when: node_type == 'data' }
+    - { role: imply-query, when: node_type == 'query' }
 
   post_tasks:
     - name: Reread supervisor

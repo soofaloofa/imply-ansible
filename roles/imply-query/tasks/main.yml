@@ -1,0 +1,8 @@
+---
+- name: Add supervisor config
+  sudo: true
+  template:
+    src: supervisor.imply-query.conf.j2
+    dest: /etc/supervisor/conf.d/imply-query.conf
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"

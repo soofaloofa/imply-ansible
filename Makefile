@@ -1,5 +1,5 @@
 build-ami:
-	packer build \
+	source vars.sh && packer build \
 	-var 'node_type=$(NODE_TYPE)' \
 	-var 'aws_access_key=${AWS_ACCESS_KEY}' \
 	-var 'aws_secret_key=${AWS_SECRET_KEY}' \
@@ -18,10 +18,11 @@ build-ami:
 	packer.json
 
 deploy-ami:
-	aws ec2 run-instances \
-	--image-id ${DEPLOY_AMI} \
+	source vars.sh && aws ec2 run-instances \
+	--image-id $(AMI) \
 	--count 1 \
 	--instance-type t2.micro \
+	--iam-instance-profile "Name=Druid" \
 	--key-name ${DEPLOY_KEY_NAME} \
 	--security-group-ids ${DEPLOY_SG} \
 	--subnet-id ${DEPLOY_SUBNET_ID} \
