@@ -57,8 +57,9 @@ broker:
     max_heap_size: 24g
     max_direct_memory_size: 4096m
   port: 8082
-  num_broker_connections: 5
+  num_connections: 5
   num_server_threads: 25
   num_processing_threads: 7
   processing_buffer_size: 536870912
+  cache_size: 2000000000
 

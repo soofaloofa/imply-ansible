@@ -58,11 +58,28 @@
     owner: "{{ imply.user }}"
     group: "{{ imply.group }}"
 
+- name: Set historical.runtime.properties
+  sudo: true
+  template: 
+    src: historical.runtime.properties.j2
+    dest: "{{ imply.dir }}/conf/druid/historical/runtime.properties"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
+
 - name: Set middleManager.jvm.config
   sudo: true
   template:
     src: middleManager.jvm.config.j2
     dest: "{{ imply.dir }}/conf/druid/middleManager/jvm.config"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
+- name: Set middleManager.runtime.properties
+  sudo: true
+  template:
+    src: middleManager.runtime.properties.j2
+    dest: "{{ imply.dir }}/conf/druid/middleManager/runtime.properties"
     owner: "{{ imply.user }}"
     group: "{{ imply.group }}"
 
@@ -74,6 +91,14 @@
     owner: "{{ imply.user }}"
     group: "{{ imply.group }}"
 
+- name: Set overlord.runtime.properties
+  sudo: true
+  template:
+    src: overlord.runtime.properties.j2
+    dest: "{{ imply.dir }}/conf/druid/overlord/runtime.properties"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
 - name: Set coordinator.jvm.config
   sudo: true
   template:
@@ -82,11 +107,27 @@
     owner: "{{ imply.user }}"
     group: "{{ imply.group }}"
 
+- name: Set coordinator.runtime.properties
+  sudo: true
+  template:
+    src: coordinator.runtime.properties.j2
+    dest: "{{ imply.dir }}/conf/druid/coordinator/runtime.properties"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
 - name: Set broker.jvm.config
   sudo: true
   template:
     src: broker.jvm.config.j2
     dest: "{{ imply.dir }}/conf/druid/broker/jvm.config"
+    owner: "{{ imply.user }}"
+    group: "{{ imply.group }}"
+
+- name: Set broker.runtime.properties
+  sudo: true
+  template:
+    src: broker.runtime.properties.j2
+    dest: "{{ imply.dir }}/conf/druid/broker/runtime.properties"
     owner: "{{ imply.user }}"
     group: "{{ imply.group }}"
 

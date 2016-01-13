@@ -43,3 +43,7 @@
     - name: Restart service
       sudo: true
       supervisorctl: name="imply-{{node_type}}" state=restarted 
+
+    - name: Truncate logs cron
+      sudo: true
+      cron: name="truncate logs" special_time=daily" job="truncate -s 0 {{imply.dir}}/var/sv/*.log"

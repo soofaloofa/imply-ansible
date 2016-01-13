@@ -20,9 +20,10 @@ build-ami:
 
 deploy-ami:
 	source vars.sh && aws ec2 run-instances \
+	--associate-public-ip-address \
 	--image-id $(AMI) \
-	--instance-type t2.micro \
-	--iam-instance-profile "Name=Druid" \
+	--instance-type ${DEPLOY_INSTANCE_TYPE} \
+	--iam-instance-profile "Name=S3andRDS_Full" \
 	--key-name ${DEPLOY_KEY_NAME} \
 	--security-group-ids ${DEPLOY_SG} \
 	--subnet-id ${DEPLOY_SUBNET_ID} \
