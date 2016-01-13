@@ -10,25 +10,23 @@ druid.extensions.remoteRepositories=[]
 # Zookeeper
 #
 
-druid.zk.service.host={{ zookeeper.ips }}
+druid.zk.service.host={{ common.zookeeper.ips }}
 druid.zk.paths.base=/druid
 
 #
 # Metadata storage
 #
 druid.metadata.storage.type=mysql
-druid.metadata.storage.connector.connectURI=jdbc:mysql://{{ mysql.ip }}:3306/{{ mysql.dbname }}?characterEncoding=UTF-8
-druid.metadata.storage.connector.user={{ mysql.user }}
-druid.metadata.storage.connector.password={{ mysql.password }}
+druid.metadata.storage.connector.connectURI=jdbc:mysql://{{ common.mysql.ip }}:3306/{{ common.mysql.dbname }}?characterEncoding=UTF-8
+druid.metadata.storage.connector.user={{ common.mysql.user }}
+druid.metadata.storage.connector.password={{ common.mysql.password }}
 
 #
 # Deep storage
 #
-druid.s3.accessKey={{druid.s3.access_key}}
-druid.s3.secretKey={{druid.s3.secret_key}}
 
 druid.storage.type=s3
-druid.storage.bucket={{druid.s3.bucket}}
+druid.storage.bucket={{common.s3.bucket}}
 druid.storage.baseKey=druid/segments
 
 #
@@ -36,7 +34,7 @@ druid.storage.baseKey=druid/segments
 #
 #
 druid.indexer.logs.type=s3
-druid.indexer.logs.s3Bucket={{druid.s3.bucket}}
+druid.indexer.logs.s3Bucket={{common.s3.bucket}}
 druid.indexer.logs.s3Prefix=druid/indexing-logs
 
 #

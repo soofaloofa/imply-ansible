@@ -1,12 +1,4 @@
 ---
-- name: Set runtime.properties
-  sudo: true
-  template:
-    src: broker.runtime.properties.j2
-    dest: "{{ imply.dir }}/conf/druid/broker/runtime.properties"
-    owner: "{{ imply.user }}"
-    group: "{{ imply.group }}"
-
 - name: Add supervisor config
   sudo: true
   template:

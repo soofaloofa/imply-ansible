@@ -21,7 +21,6 @@ build-ami:
 deploy-ami:
 	source vars.sh && aws ec2 run-instances \
 	--image-id $(AMI) \
-	--count 1 \
 	--instance-type t2.micro \
 	--iam-instance-profile "Name=Druid" \
 	--key-name ${DEPLOY_KEY_NAME} \

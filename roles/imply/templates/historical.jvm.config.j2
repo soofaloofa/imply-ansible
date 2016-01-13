@@ -1,7 +1,7 @@
 -server
--Xms{{druid.historical.min_heap_size}}
--Xmx{{druid.historical.max_heap_size}}
--XX:MaxDirectMemorySize={{druid.historical.max_direct_memory_size}}
+-Xms{{historical.jvm.min_heap_size}}
+-Xmx{{historical.jvm.max_heap_size}}
+-XX:MaxDirectMemorySize={{historical.jvm.max_direct_memory_size}}
 -Duser.timezone=UTC
 -Dfile.encoding=UTF-8
 -Djava.io.tmpdir=var/tmp
