@@ -46,4 +46,4 @@
 
     - name: Truncate logs cron
       sudo: true
-      cron: name="truncate logs" special_time=daily" job="truncate -s 0 {{imply.dir}}/var/sv/*.log"
+      cron: name="truncate logs" special_time=daily job="truncate -s 0 /opt/imply/var/sv/*.log"
