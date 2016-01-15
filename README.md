@@ -42,3 +42,12 @@ of Role:Master, Role:Data, or Role:Query.
 ```bash
 make NODE_TYPE=provision
 ```
+
+## Dependencies
+
+Druid depends on Zookeeper and MySQL.
+
+To deploy a Zookeeper cluster, see
+http://sookocheff.com/post/ansible/zookeeper-exhibitor-ansible/.
+
+To deploy a MySQL instance use [Amazon RDS](https://aws.amazon.com/rds/).
