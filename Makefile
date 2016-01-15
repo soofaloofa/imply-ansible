@@ -23,7 +23,7 @@ deploy-ami:
 	--associate-public-ip-address \
 	--image-id $(AMI) \
 	--instance-type ${DEPLOY_INSTANCE_TYPE} \
-	--iam-instance-profile "Name=S3andRDS_Full" \
+	--iam-instance-profile "Name=${DEPLOY_IAM_ROLE}" \
 	--key-name ${DEPLOY_KEY_NAME} \
 	--security-group-ids ${DEPLOY_SG} \
 	--subnet-id ${DEPLOY_SUBNET_ID} \
